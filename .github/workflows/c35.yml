@@ -1,0 +1,23 @@
+name: C35 case-fold test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  canary:
+    timeout-minutes: 5
+    runs-on:
+      group: c35-restricted
+      labels: c35-casefold
+
+    steps:
+      - name: Print trusted marker
+        shell: bash
+        run: |
+          printf 'C35_TRUSTED_MAIN\n'
+          printf 'workflow_ref=%s\n' "$GITHUB_WORKFLOW_REF"
+          printf 'git_ref=%s\n' "$GITHUB_REF"
+          printf 'runner_name=%s\n' "$RUNNER_NAME"
